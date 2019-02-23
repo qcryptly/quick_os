@@ -1,0 +1,7 @@
+#!/bin/bash
+git submodule update --init
+# Build scripts 
+if [ ! -f vendor/gtest/build/lib/libgtest.a ]; then
+  cd vendor/gtest && cmake -Bbuild -H. && make -Cbuild
+fi
+cmake -Bbuild -H.
