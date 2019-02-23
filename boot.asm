@@ -1,4 +1,5 @@
 [BITS 16]
+[org 0x7c00]
 
 start:
   mov si, MSG
