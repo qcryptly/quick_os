@@ -26,15 +26,8 @@ struct {
   const std::uint16_t signature{0xAA55};
 } legacy_lba_0;
 
-struct attribute_s {
-  const std::uint8_t required_partition {1} : 0;
-  const std::uint8_t required_partition {0} : 1;
-  const std::uint8_t required_partition {0} : 2;
-  const std::uint8_t required_partition {0} : 3;
-  const std::uint8_t zero[7];
-};
 
-template <auto size_of_partion_entry>
+template <auto size_of_partition_entry>
 struct lba_partition_entry_s {
   const guid_t partition_type_guid{};
   const guid_t unique_partition_guid{};
@@ -57,12 +50,10 @@ template <int block_size, auto last_usable = 2ull> struct gpt_primary_header_s {
   const std::uint64_t first_usable_lba{1};
   const std::uint64_t last_usable_lba{last_usable};
   const guid_t guid;
-  const lba_partition_entry_s *lba_partition_entry;
+  const lba_partition_entry_s<128> *lba_partition_entry;
   const std::uint32_t number_of_partition_entries;
   const std::uint32_t size_of_partition_entry;
   const std::uint32_t partition_entry_array_crc32;
   const std::uint32_t reserved_1[block_size - 92] = {0};
 };
 #pragma pack(pop)
-
-namespace gpt {};

@@ -1,5 +1,4 @@
-project(uefi_boot)
-
+project(os)
 cmake_minimum_required(VERSION 3.13)
 set(CMAKE_CXX_COMPILER clang++)
 set(CMAKE_CXX_FLAGS "-g -Wall -pthread -std=c++2a")
