@@ -1,4 +1,5 @@
 #!/bin/bash
+nasm -f bin -o boot.bin boot.asm
 rm -rf iso
 dd if=/dev/zero of=boot.img bs=1024 count=1440
 dd if=boot.bin of=boot.img seek=0 count=1 conv=notrunc
