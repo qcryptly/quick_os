@@ -1,7 +1,7 @@
 **.swp*
 **.bin*
 **.iso*
-*fat*
+**.img*
 iso
 build
 Logs
