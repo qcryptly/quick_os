@@ -1,7 +1,21 @@
 #!/bin/bash
-git submodule update --init
+set -x
+base_dir=$(pwd)
+if [ ! -f vendor/gtest ]; then
+  git submodule update --init
+fi
+
 # Build scripts 
 if [ ! -f vendor/gtest/build/lib/libgtest.a ]; then
-  cd vendor/gtest && cmake -Bbuild -H. && make -Cbuild
+  cd vendor/gtest && cmake -Bbuild -H. && make -Cbuild VERBOSE=1
+  cd -
 fi
-cmake -Bbuild -H.
+
+# Set compiler
+compiler=$(
+case "$COMPILER" in
+    ("clang") echo "clang";;
+    (*) echo "clang";;
+esac)
+
+cmake -Bbuild -DCMAKE_TOOLCHAIN_FILE=$base_dir/toolchains/$compiler.cmake -H.
