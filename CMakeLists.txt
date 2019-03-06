@@ -37,3 +37,7 @@ foreach(testpath ${TESTS})
   add_test(${target} ${target})
   message(STATUS "Building unit test ${target}")
 endforeach()
+message(STATUS "My ${ARCH}")
+
+add_subdirectory(efi-kern)
+add_subdirectory(bios-kern)

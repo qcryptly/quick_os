@@ -18,4 +18,9 @@ case "$COMPILER" in
     (*) echo "clang";;
 esac)
 
-cmake -Bbuild -DCMAKE_TOOLCHAIN_FILE=$base_dir/toolchains/$compiler.cmake -H.
+arch=$ARCH
+if [ -z "$ARCH" ]; then
+  arch=$(uname -m | sed s,i[3456789]86,ia32,) 
+fi
+
+cmake -Bbuild -DARCH=$arch -DCMAKE_TOOLCHAIN_FILE=$base_dir/toolchains/$compiler.cmake -H.
