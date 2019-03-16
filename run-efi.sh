@@ -33,6 +33,6 @@ tree /mnt/qos
 umount /mnt/qos
 
 qemu-system-x86_64 -enable-kvm -m 4096 -cpu host -drive if=pflash,format=raw,readonly,file=/usr/share/edk2.git/ovmf-x64/OVMF-pure-efi.fd $BASE_DIR/qos.img
-if [ ! -z $KEEP ]; then
+if [ -z $KEEP ]; then
   rm -rf $PWD/build/tmp   
 fi 

@@ -32,6 +32,9 @@ foreach(testpath ${TESTS})
   target_compile_options(${target} PRIVATE -g -Wall -pthread -std=c++2a)
   target_link_libraries(${target} PUBLIC ${lgtestpath} ${CMAKE_THREAD_LIBS_INIT})
   target_include_directories(
+    ${target} PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>)
+  target_include_directories(
     ${target} SYSTEM
     PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/vendor/gtest/googletest/include>)
   add_test(${target} ${target})
